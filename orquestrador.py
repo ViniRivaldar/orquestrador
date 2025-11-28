@@ -15,7 +15,7 @@ def buscar_todos_logs():
         lista com todos os logs
     """
     try:
-        print(f"🔄 Buscando logs de {API_URL}...")
+        print(f"🔄 Buscando logs")
         response = requests.get(API_URL, timeout=60)
         response.raise_for_status()
         logs = response.json()

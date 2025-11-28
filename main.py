@@ -2,6 +2,7 @@
 from orquestrador import buscar_todos_logs
 from normalizador import normalize_logs
 from gemini_module import analyze_logs_with_gemini
+from saver_module import salvar_analise_no_banco
 import json
 
 INSTRUCTIONS = """
@@ -95,23 +96,15 @@ def main():
         return
 
     print(f"Total de logs crus: {len(raw_logs)}")
-
     print("\n=== ETAPA 2: Normalizar logs ===")
     normalized = normalize_logs(raw_logs)
 
     print(f"Total de logs normalizados: {len(normalized)}")
 
-    # Mostra um preview
-    print("\nExemplo de logs normalizados (até 3):")
-    print(json.dumps(normalized[:3], indent=2, ensure_ascii=False))
-
     print("=== ETAPA 3: Enviar para Gemini (análise) ===")
     analysis = analyze_logs_with_gemini(INSTRUCTIONS, normalized, batch_size=20)
     print(f"Análises retornadas: {len(analysis)}")
-    print("\n=== 📊 ANÁLISES DO GEMINI ===")
-    print(json.dumps(analysis, indent=2, ensure_ascii=False))
-    # - salvar no banco
-    # por enquanto, paramos aqui
+    salvar_analise_no_banco(analysis)
 
 if __name__ == "__main__":
     main()
