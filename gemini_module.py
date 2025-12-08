@@ -6,7 +6,7 @@ from typing import List, Dict, Any, Optional
 from google import genai
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash-001")  # ✅ Corrigido
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")  # ✅ Corrigido
 BATCH_SIZE_DEFAULT = int(os.getenv("GEMINI_BATCH_SIZE", "20"))
 MAX_RETRIES = 3
 RETRY_BACKOFF = 2
